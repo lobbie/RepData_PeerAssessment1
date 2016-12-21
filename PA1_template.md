@@ -122,13 +122,55 @@ print(plot.TotalSteps)
 
 ![](PA1_template_files/figure-html/MeanTotalSteps-1.png)<!-- -->
 <br>
-The histogram indicated that the distribution of total number of steps taken per day is right-skewed with the possibilties of extreme outliers.  The mean of the total number of steps taken per day is **10766.1886792453** while the median is **10765**.
-<br>
-<br>
+The histogram indicated that the distribution of total number of steps taken per day is right-skewed with the possibilties of extreme outliers.  The mean of the total number of steps taken per day is **10766.1886792453** while the median is **10765**.  Because the distribution is skewed, the median should be used as the average.     
 
 ## What is the average daily activity pattern?  
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis).  
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?  
+
+```r
+# Calculate the mean for the 5 mins intervals
+df5MinIntervals <- dfActivity %>%
+        filter(!is.na(steps)) %>%
+        group_by(interval) %>%
+        summarise(varAvgSteps = mean(steps))
+str(df5MinIntervals)
+```
+
+```
+## Classes 'tbl_df', 'tbl' and 'data.frame':	288 obs. of  2 variables:
+##  $ interval   : int  0 5 10 15 20 25 30 35 40 45 ...
+##  $ varAvgSteps: num  1.717 0.3396 0.1321 0.1509 0.0755 ...
+```
+
+```r
+# Find the 5-minute interval that conains the maximum number of steps
+varMaxAvgSteps <- df5MinIntervals %>%
+        filter(varAvgSteps == max(varAvgSteps))
+str(varMaxAvgSteps)
+```
+
+```
+## Classes 'tbl_df', 'tbl' and 'data.frame':	1 obs. of  2 variables:
+##  $ interval   : int 835
+##  $ varAvgSteps: num 206
+```
+
+```r
+# Plot time series graph
+plot.AvgSteps <- ggplot(df5MinIntervals, aes(x=interval, y=varAvgSteps)) +
+        geom_line(colour="blue") +
+        ggtitle("Daily Average Steps by 5-minutes Intervals") +
+        labs(x="5-minutes Intervals") +
+        labs(y="Average Number of Steps") +
+        geom_point(data=varMaxAvgSteps, aes(x=interval, y=varAvgSteps, color="red"),
+                   size=3)
+print(plot.AvgSteps)
+```
+
+![](PA1_template_files/figure-html/AvgPattern-1.png)<!-- -->
+<br>
+The plot above is the **daily average steps by 5-minutes intervals** across all days.  The time interval **835** minutes have the highest average number of steps at **206.169811320755**.
 
 
 ## Imputing missing values
