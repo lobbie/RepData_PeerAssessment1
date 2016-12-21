@@ -1,27 +1,49 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-author: "William Thong"
-date: "21st Dec 2016"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
+William Thong  
+21st Dec 2016  
 
-```{r LoadLibs, echo=FALSE}
 
-# Load libraries
-library(dplyr)
-library(ggplot2)
-library(lubridate)
+```
+## 
+## Attaching package: 'dplyr'
+```
 
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```
+## 
+## Attaching package: 'lubridate'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     date
 ```
 
 
 ## Loading and preprocessing the data
-```{r ProcessData}
 
+```r
 # Ensure all files are in the intended working dir else use setwd() to set
 getwd()
+```
+
+```
+## [1] "C:/MyCourse/Data Science_JohnsHopskinsUniversity/05 Reproducible Research/Week02/RepData_PeerAssessment1"
+```
+
+```r
 #setwd("your working directory")
 
 # Check, download & unzip raw data file if required
@@ -37,10 +59,29 @@ if (!file.exists("./activity.csv")){
 dfActivity <- read.csv("activity.csv", header=TRUE, stringsAsFactors=FALSE)
 dfActivity$date <- ymd(dfActivity$date)
 str(dfActivity)
+```
 
+```
+## 'data.frame':	17568 obs. of  3 variables:
+##  $ steps   : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ date    : Date, format: "2012-10-01" "2012-10-01" ...
+##  $ interval: int  0 5 10 15 20 25 30 35 40 45 ...
+```
+
+```r
 # Run summary stats on imported data to get a view on the shape of the data
 summary(dfActivity)
+```
 
+```
+##      steps             date               interval     
+##  Min.   :  0.00   Min.   :2012-10-01   Min.   :   0.0  
+##  1st Qu.:  0.00   1st Qu.:2012-10-16   1st Qu.: 588.8  
+##  Median :  0.00   Median :2012-10-31   Median :1177.5  
+##  Mean   : 37.38   Mean   :2012-10-31   Mean   :1177.5  
+##  3rd Qu.: 12.00   3rd Qu.:2012-11-15   3rd Qu.:1766.2  
+##  Max.   :806.00   Max.   :2012-11-30   Max.   :2355.0  
+##  NA's   :2304
 ```
 
 
@@ -49,15 +90,23 @@ summary(dfActivity)
 2. Make a histogram of the total number of steps taken each day.  
 3. Calculate and report the mean and median of the total number of steps taken per day.  
 
-```{r MeanTotalSteps}
 
+```r
 # Calculate total number of steps taken per day using dplyr package
 dfTotalSteps <- dfActivity %>%
         filter(!is.na(steps)) %>%
         group_by(date) %>%
         summarise(varTotalSteps = sum(steps))
 str(dfTotalSteps)
+```
 
+```
+## Classes 'tbl_df', 'tbl' and 'data.frame':	53 obs. of  2 variables:
+##  $ date         : Date, format: "2012-10-02" "2012-10-03" ...
+##  $ varTotalSteps: int  126 11352 12116 13294 15420 11015 12811 9900 10304 17382 ...
+```
+
+```r
 # Calculate mean and median of steps
 varMeanSteps <- mean(dfTotalSteps$varTotalSteps)
 varMedianSteps <- median(dfTotalSteps$varTotalSteps)
@@ -69,10 +118,11 @@ plot.TotalSteps <- ggplot(dfTotalSteps, aes(varTotalSteps)) +
         labs(x="Total Number of Steps Taken Per Day") +
         labs(y="Frequency Count")
 print(plot.TotalSteps)
-
 ```
+
+![](PA1_template_files/figure-html/MeanTotalSteps-1.png)<!-- -->
 <br>
-The histogram indicated that the distribution of total number of steps taken per day is right-skewed with the possibilties of extreme outliers.  The mean of the total number of steps taken per day is **`r paste(varMeanSteps)`** while the median is **`r paste(varMedianSteps)`**.
+The histogram indicated that the distribution of total number of steps taken per day is right-skewed with the possibilties of extreme outliers.  The mean of the total number of steps taken per day is **10766.1886792453** while the median is **10765**.
 <br>
 <br>
 
