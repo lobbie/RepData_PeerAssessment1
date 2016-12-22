@@ -1,6 +1,7 @@
 # Reproducible Research: Peer Assessment 1
 William Thong  
 22nd Dec 2016  
+
 <br>
 <br>
 We first load the libraries required for this analysis.  While it is subjective, my programming preference is to load libraries I would be using upfront in a single code chunk.
@@ -106,7 +107,7 @@ plot.TotalSteps <- ggplot(dfTotalSteps, aes(varTotalSteps)) +
 print(plot.TotalSteps)
 ```
 
-![](PA1_template_files/figure-html/MeanTotalSteps-1.png)<!-- -->
+![](figure/MeanTotalSteps-1.png)<!-- -->
 <br>
 <span style="color:blue">
 The histogram indicated that the distribution of total number of steps taken per day is right-skewed with the possibilities of extreme outliers.  The mean of the total number of steps taken per day is **10766.19** while the median is **10765**.  Because the distribution is skewed, the median should be used as the average.
@@ -160,7 +161,7 @@ plot.AvgSteps <- ggplot(df5MinIntervals, aes(x=interval, y=varAvgSteps)) +
 print(plot.AvgSteps)
 ```
 
-![](PA1_template_files/figure-html/AvgPattern-1.png)<!-- -->
+![](figure/AvgPattern-1.png)<!-- -->
 <br>
 <span style="color:blue">
 The plot above is the **daily average steps by 5-minutes intervals** across all days.  The time interval **835** minutes have the highest average number of steps at **206.17** steps and as shown in the plot.
@@ -250,7 +251,7 @@ plot.TotalStepsNew <- ggplot(dfTotalStepsNew, aes(varTotalSteps)) +
 print(plot.TotalStepsNew)
 ```
 
-![](PA1_template_files/figure-html/PlotNew-1.png)<!-- -->
+![](figure/PlotNew-1.png)<!-- -->
 <br>
 <span style="color:blue">
 The histogram indicated that the distribution of total number of steps taken per day after imputation.  Compared to the histogram earlier (i.e. before imputation), the difference is in the 2nd bin which is now present.  The new mean of the total number of steps taken per day is **9503.87** while the new median is **10395**.  Imputations have lowered the mean and median by **1262.32** and **370** respectively.
@@ -293,7 +294,7 @@ plot.MyLinePanel <- ggplot(dfActivityWkDay, aes(interval, varAvgSteps)) +
 print(plot.MyLinePanel)
 ```
 
-![](PA1_template_files/figure-html/PlotDay-1.png)<!-- -->
+![](figure/PlotDay-1.png)<!-- -->
 <br>
 <span style="color:blue">
 The plot indicated that there seems to be higher daily activities on weekdays than on weekends.

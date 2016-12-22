@@ -6,6 +6,9 @@ output:
   html_document:
     keep_md: true
 ---
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo=TRUE, fig.path="figure/")
+```
 <br>
 <br>
 We first load the libraries required for this analysis.  While it is subjective, my programming preference is to load libraries I would be using upfront in a single code chunk.
