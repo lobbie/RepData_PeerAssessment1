@@ -18,6 +18,7 @@ This code chunk performs file logistics including checking for working directory
 
 ```r
 # Ensure all files are in the intended working dir else use setwd() to set
+#setwd("your working directory") # <--Uncomment and use if required.
 getwd()
 ```
 
@@ -26,8 +27,6 @@ getwd()
 ```
 
 ```r
-#setwd("your working directory") # <--Uncomment and use if required.
-
 # Check, download & unzip raw data file if required
 fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
 if (!file.exists("./activity.zip")){
@@ -258,7 +257,7 @@ The histogram indicated that the distribution of total number of steps taken per
 </span>
 
 ## Are there differences in activity patterns between weekdays and weekends?  
-1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.  
+1. Create a new factor variable in the dataset with two levels â€“ â€œweekdayâ€ and â€œweekendâ€ indicating whether a given date is a weekday or weekend day.  
 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
 <br>
@@ -297,6 +296,6 @@ print(plot.MyLinePanel)
 ![](PA1_template_files/figure-html/PlotDay-1.png)<!-- -->
 <br>
 <span style="color:blue">
-The plot indicated that there seems to be higher daily activities on weekdays than on weekends....
+The plot indicated that there seems to be higher daily activities on weekdays than on weekends.
 </span>
 
