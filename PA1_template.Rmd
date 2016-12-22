@@ -9,12 +9,12 @@ output:
 <br>
 <br>
 We first load the libraries required for this analysis.  While it is subjective, my programming preference is to load libraries I would be using upfront in a single code chunk.
-```{r LoadLibs}
+```{r LoadLibs, message=FALSE}
 
 # Load libraries
-suppressMessages(library(dplyr))
-suppressMessages(library(ggplot2))
-suppressMessages(library(lubridate))
+library(dplyr)
+library(ggplot2)
+library(lubridate)
 
 ```
 
@@ -81,7 +81,7 @@ print(plot.TotalSteps)
 ```
 <br>
 <span style="color:blue">
-The histogram indicated that the distribution of total number of steps taken per day is right-skewed with the possibilities of extreme outliers.  The mean of the total number of steps taken per day is **`r paste(varMeanSteps)`** while the median is **`r paste(varMedianSteps)`**.  Because the distribution is skewed, the median should be used as the average.
+The histogram indicated that the distribution of total number of steps taken per day is right-skewed with the possibilities of extreme outliers.  The mean of the total number of steps taken per day is **`r paste(round(varMeanSteps, 2))`** while the median is **`r paste(round(varMedianSteps, 2))`**.  Because the distribution is skewed, the median should be used as the average.
 </span>     
 
 
@@ -118,7 +118,7 @@ print(plot.AvgSteps)
 ```
 <br>
 <span style="color:blue">
-The plot above is the **daily average steps by 5-minutes intervals** across all days.  The time interval **`r paste(varMaxAvgSteps$interval)`** minutes have the highest average number of steps at **`r paste(varMaxAvgSteps$varAvgSteps)`** steps and as shown in the plot.
+The plot above is the **daily average steps by 5-minutes intervals** across all days.  The time interval **`r paste(round(varMaxAvgSteps$interval, 2))`** minutes have the highest average number of steps at **`r paste(round(varMaxAvgSteps$varAvgSteps, 2))`** steps and as shown in the plot.
 </span>
 
 
@@ -188,7 +188,7 @@ print(plot.TotalStepsNew)
 ```
 <br>
 <span style="color:blue">
-The histogram indicated that the distribution of total number of steps taken per day after imputation.  Compared to the histogram earlier (i.e. before imputation), the difference is in the 2nd bin which is now present.  The new mean of the total number of steps taken per day is **`r paste(varMeanStepsNew)`** while the new median is **`r paste(varMedianStepsNew)`**.  Imputations have lowered the mean and median by **`r paste(varMeanSteps-varMeanStepsNew)`** and **`r paste(varMedianSteps-varMedianStepsNew)`** respectively.
+The histogram indicated that the distribution of total number of steps taken per day after imputation.  Compared to the histogram earlier (i.e. before imputation), the difference is in the 2nd bin which is now present.  The new mean of the total number of steps taken per day is **`r paste(round(varMeanStepsNew, 2))`** while the new median is **`r paste(round(varMedianStepsNew,2))`**.  Imputations have lowered the mean and median by **`r paste(round(varMeanSteps-varMeanStepsNew,2))`** and **`r paste(round(varMedianSteps-varMedianStepsNew, 2))`** respectively.
 </span>
 
 ## Are there differences in activity patterns between weekdays and weekends?  
@@ -223,3 +223,4 @@ print(plot.MyLinePanel)
 <span style="color:blue">
 The plot indicated that there seems to be higher daily activities on weekdays than on weekends.
 </span>
+
