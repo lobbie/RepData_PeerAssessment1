@@ -221,6 +221,6 @@ print(plot.MyLinePanel)
 ```
 <br>
 <span style="color:blue">
-The plot indicated that there seems to be higher daily activities on weekdays than on weekends.
+The plot indicated that there seems to be higher daily activities on weekdays than on weekends....
 </span>
 

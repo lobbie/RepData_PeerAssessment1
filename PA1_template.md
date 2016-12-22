@@ -297,6 +297,6 @@ print(plot.MyLinePanel)
 ![](PA1_template_files/figure-html/PlotDay-1.png)<!-- -->
 <br>
 <span style="color:blue">
-The plot indicated that there seems to be higher daily activities on weekdays than on weekends.
+The plot indicated that there seems to be higher daily activities on weekdays than on weekends....
 </span>
 
